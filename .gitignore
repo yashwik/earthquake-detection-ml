@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/raw/
+data/sample/
+data/processed/
+
+# Large/generated outputs
+*.hdf5
+*.h5
+*.npy
+*.npz
+
+# Environment/system
+.DS_Store

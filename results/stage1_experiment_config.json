@@ -1,0 +1,97 @@
+{
+  "project_stage": "Stage 1",
+  "task": "Earthquake vs noise classification from seismic waveform windows",
+  "dataset": {
+    "source": "INSTANCE",
+    "sample": "10000 earthquake recordings + 1000 noise recordings",
+    "sampling_rate_hz": 100.0,
+    "window_duration_s": 20.0,
+    "window_samples": 2000,
+    "components": [
+      "E",
+      "N",
+      "Z"
+    ]
+  },
+  "windowing": {
+    "earthquake_window": "5 s before annotated P arrival + 15 s after annotated P arrival",
+    "noise_window": "random 20 s segment from noise recording"
+  },
+  "splitting": {
+    "earthquake_grouping": "source_id kept within a single split",
+    "noise_split": "independent train/validation/test split",
+    "full_data_shapes": {
+      "train": [
+        7461,
+        3,
+        2000
+      ],
+      "validation": [
+        1743,
+        3,
+        2000
+      ],
+      "test": [
+        1796,
+        3,
+        2000
+      ]
+    }
+  },
+  "preprocessing": {
+    "detrending": "constant",
+    "filter": "4th-order zero-phase Butterworth bandpass",
+    "bandpass_hz": [
+      3.0,
+      20.0
+    ],
+    "random_forest_input": "amplitude-preserving preprocessed waveforms",
+    "cnn_final_input": "amplitude-preserving preprocessed waveforms"
+  },
+  "sta_lta": {
+    "component": "Z",
+    "sta_s": 1.0,
+    "lta_s": 10.0,
+    "on_threshold": 3.0,
+    "off_threshold": 1.5
+  },
+  "random_forest": {
+    "features": {
+      "per_component": [
+        "RMS",
+        "peak amplitude",
+        "energy",
+        "dominant frequency",
+        "spectral centroid"
+      ],
+      "total_features": 15
+    },
+    "n_estimators": 300,
+    "max_depth": 15,
+    "min_samples_split": 5,
+    "min_samples_leaf": 2,
+    "final_threshold": 0.7
+  },
+  "cnn": {
+    "architecture": {
+      "input_channels": 3,
+      "conv_channels": [
+        32,
+        64,
+        128
+      ],
+      "kernel_size": 7,
+      "pooling": "MaxPool1d after first two convolutional blocks",
+      "global_pooling": "AdaptiveAvgPool1d(1)",
+      "classifier_outputs": 2
+    },
+    "loss": "unweighted CrossEntropyLoss",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "batch_size": 64,
+    "training_epochs": 15,
+    "best_validation_epoch": 12,
+    "best_validation_f1": 0.9561,
+    "final_threshold": 0.7
+  }
+}

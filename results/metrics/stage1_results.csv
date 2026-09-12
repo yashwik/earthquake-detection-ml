@@ -1,0 +1,4 @@
+model,dataset,split,accuracy,precision,recall,f1,true_negative,false_positive,false_negative,true_positive,threshold,best_epoch
+STA/LTA,INSTANCE sample: 10000 earthquake + 1000 noise,test,0.6977,0.9859,0.6798,0.8047,134,16,527,1119,,
+Random Forest,INSTANCE sample: 10000 earthquake + 1000 noise,test,0.9599,0.9752,0.9812,0.9782,109,41,31,1615,0.7,
+1D CNN,INSTANCE sample: 10000 earthquake + 1000 noise,test,0.9304,0.9388,0.9885,0.963,44,106,19,1627,0.7,12.0
