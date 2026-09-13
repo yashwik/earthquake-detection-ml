@@ -1,0 +1,4 @@
+Model,MAE_s,Median_error_s,Within_0.1s_pct,Within_0.5s_pct,Within_1.0s_pct,Within_2.0s_pct
+STA/LTA,2.7246,0.25,30.78,63.42,72.15,76.42
+1D CNN,4.9452,0.11,49.15,82.02,83.96,84.99
+1D U-Net,3.8543,0.1,50.91,78.49,83.29,85.18

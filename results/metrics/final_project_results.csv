@@ -1,0 +1,7 @@
+Stage,Task,Model,Accuracy,Precision,Recall,F1,MAE_s,Median_error_s,Within_0.5s_pct,Within_1.0s_pct,Within_2.0s_pct
+Stage 1,Earthquake Detection,STA/LTA,0.6977,0.9859,0.6798,0.8047,,,,,
+Stage 1,Earthquake Detection,Random Forest,0.9599,0.9752,0.9812,0.9782,,,,,
+Stage 1,Earthquake Detection,1D CNN,0.9304,0.9388,0.9885,0.963,,,,,
+Stage 2,P-wave Picking,STA/LTA,,,,,2.7246,0.25,63.42,72.15,76.42
+Stage 2,P-wave Picking,1D CNN,,,,,4.9452,0.11,82.02,83.96,84.99
+Stage 2,P-wave Picking,1D U-Net,,,,,3.8543,0.1,78.49,83.29,85.18
